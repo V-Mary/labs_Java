@@ -1,26 +1,15 @@
-# labs_Java
-Task: Create a program in Java and implement a class from lab 1
-Also:
 
- -Add 5 private fields 
+ lab 8 (Java) on IoT course
 
- -Provide public get and set methonds to access and update the value of private variable
+Task:
+    -Create console program using Java and implement code for class diagram from Lab 2.
+    -Use plugins:
+    [Jacoco](https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin),
+    [PMD](https://maven.apache.org/plugins/maven-pmd-plugin/download.cgi),
+    [Checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle-mojo.html).
 
- -Add static field (int)
+How to run:
+    -Clone branch, open CMD.
+    -Run javac App.java
+    -Run App.java
 
- -Add 2 protected fields
-
- -Implement constructor(default, with 4 parameters, with all) IMPORTATN: avoid duplication of code
-
- -Methods: 
-
-     -toString()
-
-     -static method: printStaticField()
-
-     -printField()
-
-     -resetValues(parameters)
-
-
- In main() method create 3 obj (use different constructors), call toString(), printStaticField(), printField().
