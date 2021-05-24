@@ -1,8 +1,6 @@
 Task
 Write code for Lab 2
 
-MedicalProfession. Implement a hierarchy of performances that can take place in a medical profession
-Draw a UML class diagram
 Use java code convention
 CLasses must be distributed in packages
 Work with console must be minimal
