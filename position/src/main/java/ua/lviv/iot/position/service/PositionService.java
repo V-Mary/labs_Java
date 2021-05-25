@@ -1,39 +1,44 @@
 package ua.lviv.iot.positionproject.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.ApplicationScope;
 
+import ua.lviv.iot.positionproject.dal.PositionRepository;
+import ua.lviv.iot.positionproject.exceptions.PositionNotFouldException;
 import ua.lviv.iot.positionproject.models.Position;
 
 @Service
 @ApplicationScope
 public class PositionService {
-	
-	private AtomicInteger id = new AtomicInteger(0);
-	private Map<Integer, Position> positionsMap = new HashMap<Integer, Position>();
-	
+
+	@Autowired
+	private PositionRepository repository;
+
 	public Position addPosition(Position position) {
-		Integer positionId = id.incrementAndGet();
-		position.setId(positionId);
-		positionsMap.put(positionId, position);
-		return position;
-	}
-	
-	public Position updatePosition(Position position) {
-		return positionsMap.put(position.getId(), position);
+
+		return repository.save(position);
+
 	}
 
-	public List<Position> getPositions(){
-		return positionsMap.values().stream().collect(Collectors.toList());
+	public Position updatePosition(Position position) {
+
+		if (repository.existsById(position.getId())) {
+			return repository.save(position);
+		}
+		
+		throw new PositionNotFouldException("Position with id:" + position.getId() + "not found in the system.");
+	}
+
+	public List<Position> getPositions() {
+
+		return repository.findAll();
 	}
 
 	public Position getPosition(Integer id) {
-		return positionsMap.get(id);
+
+		return repository.findById(id).orElseThrow();
 	}
 }
